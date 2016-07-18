@@ -2,7 +2,9 @@ module RubyExercise1
   class UsersList
 
     NoUserError = Class.new(StandardError)
-
+    
+    attr_reader :users
+    
     def initialize
       @users = []
     end
@@ -17,10 +19,10 @@ module RubyExercise1
 
     def get_user_name(user)
       user_name = user and user.user_name
-      if user_name.nil? || user_name.strip.empty?
+      if user_name.nil? || user_name.to_s.strip.empty?
         raise NoUserError, "No user or empty name"
       else
-        user_name
+        user[:user_name]
       end
     end
 
