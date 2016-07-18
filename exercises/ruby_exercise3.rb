@@ -4,7 +4,7 @@ module RubyExercise3
 
   class TextRenderer < BaseRenderer
     def render(text)
-      super
+      super()
       puts text
     end
   end
