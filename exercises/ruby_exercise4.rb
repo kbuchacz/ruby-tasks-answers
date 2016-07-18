@@ -9,7 +9,7 @@ module RubyExercise4
 
     def get_file_content(file_path)
       content = ""
-      read_contents = proc do |file|
+      read_contents = lambda do |file|
         puts "Read content"
         content << file.read
         return content
