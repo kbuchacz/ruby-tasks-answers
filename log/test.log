@@ -44,3 +44,203 @@
   [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
   [1m[35m (0.0ms)[0m  begin transaction
   [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (32.7ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "commentable_type" varchar, "commentable_id" integer, "user_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (7.2ms)[0m  CREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (7.3ms)[0m  [1mCREATE TABLE "post_media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "medium_id" integer, "medium_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (6.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "videos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (8.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (6.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (6.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160802090826')
+  [1m[36m (6.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160802090756')[0m
+  [1m[35m (6.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160802090804')
+  [1m[36m (5.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160802090739')[0m
+  [1m[35m (6.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160802090747')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Post 1"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.179237"], ["updated_at", "2016-08-02 09:54:45.179237"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Post"], ["created_at", "2016-08-02 09:54:45.188267"], ["updated_at", "2016-08-02 09:54:45.188267"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Post"], ["created_at", "2016-08-02 09:54:45.190314"], ["updated_at", "2016-08-02 09:54:45.190314"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["commentable_id", 1], ["commentable_type", "Post"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 1"], ["url", "http://images.com/original1.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.210517"], ["updated_at", "2016-08-02 09:54:45.210517"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Image"], ["created_at", "2016-08-02 09:54:45.212682"], ["updated_at", "2016-08-02 09:54:45.212682"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["commentable_id", 1], ["commentable_type", "Image"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Video 1"], ["url", "http://videos.com/original1.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.222945"], ["updated_at", "2016-08-02 09:54:45.222945"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Video"], ["created_at", "2016-08-02 09:54:45.225307"], ["updated_at", "2016-08-02 09:54:45.225307"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["commentable_id", 1], ["commentable_type", "Video"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 2"], ["url", "http://images.com/original2.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.229798"], ["updated_at", "2016-08-02 09:54:45.229798"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Image"], ["created_at", "2016-08-02 09:54:45.232519"], ["updated_at", "2016-08-02 09:54:45.232519"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  [["commentable_id", 1], ["commentable_type", "Image"]]
+  [1m[36mComment Load (0.0ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["commentable_id", 1], ["commentable_type", "Image"]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 3"], ["url", "http://images.com/original3.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.246440"], ["updated_at", "2016-08-02 09:54:45.246440"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 2"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.248255"], ["updated_at", "2016-08-02 09:54:45.248255"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPostMedium Load (0.2ms)[0m  SELECT  "post_media".* FROM "post_media" WHERE "post_media"."medium_id" = ? AND "post_media"."medium_type" = ? LIMIT 1  [["medium_id", 1], ["medium_type", "Image"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("post_id", "medium_id", "medium_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["post_id", 1], ["medium_id", 1], ["medium_type", "Image"], ["created_at", "2016-08-02 09:54:45.261676"], ["updated_at", "2016-08-02 09:54:45.261676"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT  "images".* FROM "images" INNER JOIN "post_media" ON "images"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "images"."id" DESC LIMIT 1[0m  [["post_id", 1], ["medium_type", "Image"]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Post 5"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.282509"], ["updated_at", "2016-08-02 09:54:45.282509"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Post"], ["created_at", "2016-08-02 09:54:45.284951"], ["updated_at", "2016-08-02 09:54:45.284951"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["commentable_id", 1], ["commentable_type", "Post"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 6"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.288767"], ["updated_at", "2016-08-02 09:54:45.288767"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 4"], ["url", "http://images.com/original4.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.291165"], ["updated_at", "2016-08-02 09:54:45.291165"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Image"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.293647"], ["updated_at", "2016-08-02 09:54:45.293647"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mImage Load (0.1ms)[0m  SELECT  "images".* FROM "images" INNER JOIN "post_media" ON "images"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "images"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Image"]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 7"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.298287"], ["updated_at", "2016-08-02 09:54:45.298287"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 5"], ["url", "http://images.com/original5.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.300981"], ["updated_at", "2016-08-02 09:54:45.300981"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Image"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.303007"], ["updated_at", "2016-08-02 09:54:45.303007"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mImage Load (0.1ms)[0m  SELECT  "images".* FROM "images" INNER JOIN "post_media" ON "images"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "images"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Image"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 8"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.307802"], ["updated_at", "2016-08-02 09:54:45.307802"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 6"], ["url", "http://images.com/original6.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.310128"], ["updated_at", "2016-08-02 09:54:45.310128"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_id", "medium_type", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_id", 1], ["medium_type", "Image"], ["post_id", 1], ["created_at", "2016-08-02 09:54:45.312210"], ["updated_at", "2016-08-02 09:54:45.312210"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mImage Load (0.1ms)[0m  SELECT  "images".* FROM "images" INNER JOIN "post_media" ON "images"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "images"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Image"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 9"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.316559"], ["updated_at", "2016-08-02 09:54:45.316559"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 2"], ["url", "http://videos.com/original2.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.319936"], ["updated_at", "2016-08-02 09:54:45.319936"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Video"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.322477"], ["updated_at", "2016-08-02 09:54:45.322477"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT  "videos".* FROM "videos" INNER JOIN "post_media" ON "videos"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "videos"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Video"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 10"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.326895"], ["updated_at", "2016-08-02 09:54:45.326895"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 3"], ["url", "http://videos.com/original3.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.329633"], ["updated_at", "2016-08-02 09:54:45.329633"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Video"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.332269"], ["updated_at", "2016-08-02 09:54:45.332269"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mVideo Load (0.1ms)[0m  SELECT  "videos".* FROM "videos" INNER JOIN "post_media" ON "videos"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "videos"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Video"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 11"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.336064"], ["updated_at", "2016-08-02 09:54:45.336064"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 4"], ["url", "http://videos.com/original4.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.338257"], ["updated_at", "2016-08-02 09:54:45.338257"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_id", "medium_type", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_id", 1], ["medium_type", "Video"], ["post_id", 1], ["created_at", "2016-08-02 09:54:45.340401"], ["updated_at", "2016-08-02 09:54:45.340401"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mVideo Load (0.1ms)[0m  SELECT  "videos".* FROM "videos" INNER JOIN "post_media" ON "videos"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "videos"."id" DESC LIMIT 1  [["post_id", 1], ["medium_type", "Video"]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 12"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.344781"], ["updated_at", "2016-08-02 09:54:45.344781"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 5"], ["url", "http://videos.com/original5.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.347485"], ["updated_at", "2016-08-02 09:54:45.347485"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Video"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.350312"], ["updated_at", "2016-08-02 09:54:45.350312"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "images" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Image 7"], ["url", "http://images.com/original7.jpeg"], ["description", "Itaque fuga et neque."], ["created_at", "2016-08-02 09:54:45.352575"], ["updated_at", "2016-08-02 09:54:45.352575"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("medium_type", "post_id", "medium_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["medium_type", "Image"], ["post_id", 1], ["medium_id", 1], ["created_at", "2016-08-02 09:54:45.354795"], ["updated_at", "2016-08-02 09:54:45.354795"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "post_media" WHERE "post_media"."post_id" = ?  [["post_id", 1]]
+  [1m[36mPostMedium Load (0.1ms)[0m  [1mSELECT "post_media".* FROM "post_media" WHERE "post_media"."post_id" = ?[0m  [["post_id", 1]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 6"], ["url", "http://videos.com/original6.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.360273"], ["updated_at", "2016-08-02 09:54:45.360273"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "comments" ("body", "commentable_id", "commentable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Sit non soluta temporibus autem est voluptatem possimus."], ["commentable_id", 1], ["commentable_type", "Video"], ["created_at", "2016-08-02 09:54:45.362677"], ["updated_at", "2016-08-02 09:54:45.362677"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  [["commentable_id", 1], ["commentable_type", "Video"]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["commentable_id", 1], ["commentable_type", "Video"]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "videos" ("name", "url", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Video 7"], ["url", "http://videos.com/original7.mp4"], ["description", "Vel eum quia est non occaecati quos voluptate."], ["created_at", "2016-08-02 09:54:45.367724"], ["updated_at", "2016-08-02 09:54:45.367724"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Post 13"], ["body", "Ullam non inventore rem voluptates cum."], ["created_at", "2016-08-02 09:54:45.369535"], ["updated_at", "2016-08-02 09:54:45.369535"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPostMedium Load (0.0ms)[0m  SELECT  "post_media".* FROM "post_media" WHERE "post_media"."medium_id" = ? AND "post_media"."medium_type" = ? LIMIT 1  [["medium_id", 1], ["medium_type", "Video"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "post_media" ("post_id", "medium_id", "medium_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["post_id", 1], ["medium_id", 1], ["medium_type", "Video"], ["created_at", "2016-08-02 09:54:45.373308"], ["updated_at", "2016-08-02 09:54:45.373308"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.0ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVideo Load (0.1ms)[0m  [1mSELECT  "videos".* FROM "videos" INNER JOIN "post_media" ON "videos"."id" = "post_media"."medium_id" WHERE "post_media"."post_id" = ? AND "post_media"."medium_type" = ?  ORDER BY "videos"."id" DESC LIMIT 1[0m  [["post_id", 1], ["medium_type", "Video"]]
+  [1m[35m (0.2ms)[0m  rollback transaction
